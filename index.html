@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+    </style>
+</head>
+<body class="font-poppins w-full h-screen flex flex-col justify-center items-center bg-gray-900">
+    <h1 class="text-white text-3xl mb-5 text-center font-extrabold">Calculator</h1>
+        <div class="bg-black rounded-2xl shadow-xl p-6">
+        <input type="text" id="inputBox" placeholder="0" class="w-60 h-16 bg-transparent border-none text-white text-3xl text-right pr-3 focus:outline-none placeholder-gray-600 mb-5" />
+        <div class="grid grid-cols-4 gap-2">
+            <button class="rounded-md bg-red-500 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-red-600 focus:outline-none">AC</button>
+            <button class="rounded-md bg-red-500 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-red-600 focus:outline-none">DEL</button>
+            <button class="rounded-md bg-gray-800 text-green-400 text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">%</button>
+            <button class="rounded-md bg-gray-800 text-green-400 text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">/</button>
+
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">7</button>
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">8</button>
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">9</button>
+            <button class="rounded-md bg-gray-800 text-green-400 text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">*</button>
+
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">4</button>
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">5</button>
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">6</button>
+            <button class="rounded-md bg-gray-800 text-green-400 text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">-</button>
+
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">1</button>
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">2</button>
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">3</button>
+            <button class="rounded-md bg-gray-800 text-green-400 text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">+</button>
+
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 col-span-2 flex items-center justify-center hover:bg-gray-700 focus:outline-none">0</button>
+            <button class="rounded-md bg-gray-800 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-gray-700 focus:outline-none">.</button>
+            <button class="rounded-md bg-orange-500 text-white text-lg font-semibold h-14 w-14 flex items-center justify-center hover:bg-orange-600 focus:outline-none">=</button>
+        </div>
+    </div>
+
+    <script>
+        let input = document.getElementById('inputBox');
+        let buttons = document.querySelectorAll('button');
+
+        let string = "";
+        let arr = Array.from(buttons);
+        arr.forEach(button => 
+        {
+            button.addEventListener('click', (e) =>
+            {
+                if(e.target.innerHTML == '=')
+                {
+                    try 
+                    {
+                        string = eval(string);
+                        input.value = string;
+                    } 
+                    catch (error) 
+                    {
+                        input.value = "Syntax ERROR";
+                        string = ""; 
+                    }
+                } 
+                else if(e.target.innerHTML == 'AC')
+                {
+                    string = "";
+                    input.value = string;
+                } 
+                else if(e.target.innerHTML == 'DEL')
+                {
+                    string = string.substring(0, string.length-1);
+                    input.value = string;
+                } 
+                else
+                {
+                    string += e.target.innerHTML;
+                    input.value = string;
+                }
+            })
+        })
+    </script>
+</body>
+</html>
